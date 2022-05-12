@@ -51,7 +51,7 @@ namespace AllOpModsInOne
 {            
     internal class ModConfig
     {
-        	public bool OpArmorAbilitiesEnabled = true;
+        public bool OpArmorAbilitiesEnabled = true;
 		public bool VenomTorsoCanUseBothHands = true;
 		public bool RemovableMutationsAndAugmentations = true;
 		public bool UseMountedWeaponsManyTimesPerTurn = true;
@@ -62,14 +62,14 @@ namespace AllOpModsInOne
 		public bool OpLivingWeapons = true;
 		public bool ArchAngelRL1HasBlastRadius = true;
 		public bool InstantResearch = true;
-        	public bool InstantManufacturing = true;
+        public bool InstantManufacturing = true;
 		public bool InstantFacilityConstruction = true;
 		public bool FacilitiesDoNotRequirePower = true;
 		public bool UnlockAllFacilities = true;
 		public bool EverythingHalfOff = true;
 		public bool ManufactureEverything = true;
 		public bool StartWithEliteSoldiers = true;
-        	public bool DisableCorruption = true;
+        public bool DisableCorruption = true;
 		public bool IncreaseSoldierInventorySlots = true;
 		public bool UnlockAllBionics = true;
 		public bool UnlockAllMutations = true;
@@ -84,10 +84,10 @@ namespace AllOpModsInOne
 	}
     public static class MyMod
     {
-        internal static ModConfig Config;
-	internal static string LogPath;
-	internal static string ModDirectory;
-	public static void HomeMod(Func<string, object, object> api = null)
+		internal static ModConfig Config;
+		internal static string LogPath;
+		internal static string ModDirectory;
+		public static void HomeMod(Func<string, object, object> api = null)
         {
             MyMod.Config = api("config", null) as ModConfig ?? new ModConfig();
             HarmonyInstance.Create("AllOpModsInOne").PatchAll();
@@ -96,21 +96,21 @@ namespace AllOpModsInOne
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
             SharedData Shared = GameUtl.GameComponent<SharedData>();
 
-	    ModDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-	    LogPath = Path.Combine(ModDirectory, "AllOpModsInOne.log");
-	    Logger.Initialize(LogPath, Config.Debug, ModDirectory, nameof(MyMod));
+		    ModDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+		    LogPath = Path.Combine(ModDirectory, "AllOpModsInOne.log");
+		    Logger.Initialize(LogPath, Config.Debug, ModDirectory, nameof(MyMod));
 
-	    OpArmor.Change_Armor();
+		    OpArmor.Change_Armor();
             MountedWeaponsMechArms.Change_Augmentations();
             InstantStuffAndDiscounts.Change_Time();
             EliteSoldiers.EliteSquad();
             Corruption.Change_Corruption();           
             SoldierSkills.Skills();
-	    HarmonyPatches.Change_Patches();
-	    SmallChanges.MutationsAndAugmentations.Change_PermanentAug();
-	    SmallChanges.OtherChanges.Change_Others();
-	    NotForNexuesRelease.MyStuff();
-	}       
+			HarmonyPatches.Change_Patches();
+			SmallChanges.MutationsAndAugmentations.Change_PermanentAug();
+			SmallChanges.OtherChanges.Change_Others();
+			NotForNexuesRelease.MyStuff();
+		}       
         // Token: 0x06000002 RID: 2 RVA: 0x00002058 File Offset: 0x00000258
         public static void MainMod(Func<string, object, object> api)
         {
