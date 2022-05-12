@@ -55,6 +55,7 @@ namespace AllOpModsInOne.SmallChanges
             {
                 WeaponDef rl1 = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("NJ_HeavyRocketLauncher_WeaponDef"));
                 WeaponDef rebuke = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("AC_Rebuke_WeaponDef"));
+                ShootAbilityDef ShootRocket = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("LaunchRocket_ShootAbilityDef"));
 
                 rl1.DamagePayload.DamageDeliveryType = DamageDeliveryType.Sphere;
                 rl1.SpreadRadius = 2;
