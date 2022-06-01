@@ -34,156 +34,24 @@ namespace AllOpModsInOne
         private static void Postfix()
         {
             if (MyMod.Config.UnlockAllBionics == true)
-            {
-                UnlockBionics();
+            {                
+                InfiniteSp();
             }
             if (MyMod.Config.UnlockAllMutations == true)
-            {
-                UnlockMutations();
+            {               
+                MaxLvLSoldiers();
             }
 			if (MyMod.Config.MaxLevelSoldiers == true)
             {
-                MaxLvLSoldiers();
+                UnlockBionics();
             }
 			if (MyMod.Config.GetNineThousandPlusSP == true)
             {
-                InfiniteSp();
+                UnlockMutations();
             }
 			if (MyMod.Config.ManufactureEverything == true)
             {
                 ManufactureAll();
-            }
-        }
-
-        private static void ManufactureAll()
-        {
-            OptionsManager optionsManager = GameUtl.GameComponent<OptionsManager>();
-            if (optionsManager != null)
-            {
-                GeoLevelController geoLevelController = GameUtl.CurrentLevel().GetComponent<GeoLevelController>();
-                if (geoLevelController != null)
-                {
-                    GeoPhoenixFaction phoenixFaction = geoLevelController.PhoenixFaction;
-                    SharedGameTagsDataDef sharedGameTags = GameUtl.GameComponent<SharedData>().SharedGameTags;
-                    List<TacticalItemDef> list = new List<TacticalItemDef>();
-                    list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
-                                  where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
-                                  select x);
-                    list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
-                                  where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
-                                  select x);
-                    list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
-                                  where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
-                                  select x);
-                    list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
-                                  where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
-                                  select x);
-                    list.AddRange(optionsManager.DefsRepo.GetAllDefs<RedeemableCodeDef>().SelectMany((RedeemableCodeDef x) => x.GiftedItems));
-                    GameTagDef manufacturableTag = sharedGameTags.ManufacturableTag;
-                    using (List<TacticalItemDef>.Enumerator enumerator = list.GetEnumerator())
-                    {
-                        while (enumerator.MoveNext())
-                        {
-                            TacticalItemDef item = enumerator.Current;
-                            if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
-                            {
-                                if (!item.Tags.Contains(manufacturableTag))
-                                {
-                                    item.Tags.Add(manufacturableTag);
-                                }
-                                ManufacturableItem item2 = new ManufacturableItem(item);
-                                phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
-                            }
-                        }
-                    }
-                    List<GeoVehicleEquipmentDef> list2 = new List<GeoVehicleEquipmentDef>();
-                    list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
-                                   where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
-                                   select x);
-                    list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
-                                   where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
-                                   select x);
-                    list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
-                                   where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
-                                   select x);
-                    list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
-                                   where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
-                                   select x);
-                    using (List<GeoVehicleEquipmentDef>.Enumerator enumerator = list2.GetEnumerator())
-                    {
-                        while (enumerator.MoveNext())
-                        {
-                            GeoVehicleEquipmentDef item = enumerator.Current;
-                            if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
-                            {
-                                if (!item.Tags.Contains(manufacturableTag))
-                                {
-                                    item.Tags.Add(manufacturableTag);
-                                }
-                                ManufacturableItem item2 = new ManufacturableItem(item);
-                                phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
-                            }
-                        }
-                    }
-                    List<GroundVehicleItemDef> list3 = new List<GroundVehicleItemDef>();
-                    list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
-                                   select x);
-                    list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
-                                   select x);
-                    list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
-                                   select x);
-                    list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
-                                   select x);
-                    using (List<GroundVehicleItemDef>.Enumerator enumerator = list3.GetEnumerator())
-                    {
-                        while (enumerator.MoveNext())
-                        {
-                            GroundVehicleItemDef item = enumerator.Current;
-                            if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
-                            {
-                                if (!item.Tags.Contains(manufacturableTag))
-                                {
-                                    item.Tags.Add(manufacturableTag);
-                                }
-                                ManufacturableItem item2 = new ManufacturableItem(item);
-                                phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
-                            }
-                        }
-                    }
-                    List<VehicleItemDef> list4 = new List<VehicleItemDef>();
-                    list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
-                                   select x);
-                    list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
-                                   select x);
-                    list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
-                                   select x);
-                    list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
-                                   where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
-                                   select x);
-                    using (List<VehicleItemDef>.Enumerator enumerator = list4.GetEnumerator())
-                    {
-                        while (enumerator.MoveNext())
-                        {
-                            VehicleItemDef item = enumerator.Current;
-                            if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
-                            {
-                                if (!item.Tags.Contains(manufacturableTag))
-                                {
-                                    item.Tags.Add(manufacturableTag);
-                                }
-                                ManufacturableItem item2 = new ManufacturableItem(item);
-                                phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
-                            }
-                        }
-                    }
-                }
             }
         }
 
@@ -250,6 +118,158 @@ namespace AllOpModsInOne
                                                 where p.Tags.Contains(mutationTag) && p.ViewElementDef != null
                                                 select p).ToList<ItemDef>();
                     GeoLevelController._ConsoleGetLevelController().ViewerFaction.UnlockedAugmentations.AddRange(enumerable);
+                }
+            }
+        }
+
+        private static void ManufactureAll()
+        {
+            OptionsManager optionsManager = GameUtl.GameComponent<OptionsManager>();
+            if (optionsManager != null)
+            {
+                GeoLevelController geoLevelController = GameUtl.CurrentLevel().GetComponent<GeoLevelController>();
+                if (geoLevelController != null)
+                {
+                    GeoPhoenixFaction phoenixFaction = geoLevelController.PhoenixFaction;
+                    SharedGameTagsDataDef sharedGameTags = GameUtl.GameComponent<SharedData>().SharedGameTags;
+                    GameTagDef manufacturableTag = sharedGameTags.ManufacturableTag;
+                    UnlockWeaponsArmorAndSkins(optionsManager, geoLevelController, phoenixFaction, manufacturableTag);
+                    UnlockAircraftEquipment(optionsManager, geoLevelController, phoenixFaction, manufacturableTag);
+                    UnlockGroundVehicles(optionsManager, geoLevelController, phoenixFaction, manufacturableTag);
+                    UnlockAircraft(optionsManager, geoLevelController, phoenixFaction, manufacturableTag);
+                }
+            }
+        }
+
+        private static void UnlockAircraft(OptionsManager optionsManager, GeoLevelController geoLevelController, GeoPhoenixFaction phoenixFaction, GameTagDef manufacturableTag)
+        {
+            List<VehicleItemDef> list4 = new List<VehicleItemDef>();
+            list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
+                           select x);
+            list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
+                           select x);
+            list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
+                           select x);
+            list4.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<VehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
+                           select x);
+            using (List<VehicleItemDef>.Enumerator enumerator = list4.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    VehicleItemDef item = enumerator.Current;
+                    if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
+                    {
+                        if (!item.Tags.Contains(manufacturableTag))
+                        {
+                            item.Tags.Add(manufacturableTag);
+                        }
+                        ManufacturableItem item2 = new ManufacturableItem(item);
+                        phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
+                    }
+                }
+            }
+        }
+
+        private static void UnlockGroundVehicles(OptionsManager optionsManager, GeoLevelController geoLevelController, GeoPhoenixFaction phoenixFaction, GameTagDef manufacturableTag)
+        {
+            List<GroundVehicleItemDef> list3 = new List<GroundVehicleItemDef>();
+            list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
+                           select x);
+            list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
+                           select x);
+            list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
+                           select x);
+            list3.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GroundVehicleItemDef>()
+                           where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
+                           select x);
+            using (List<GroundVehicleItemDef>.Enumerator enumerator = list3.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    GroundVehicleItemDef item = enumerator.Current;
+                    if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
+                    {
+                        if (!item.Tags.Contains(manufacturableTag))
+                        {
+                            item.Tags.Add(manufacturableTag);
+                        }
+                        ManufacturableItem item2 = new ManufacturableItem(item);
+                        phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
+                    }
+                }
+            }
+        }
+
+        private static void UnlockAircraftEquipment(OptionsManager optionsManager, GeoLevelController geoLevelController, GeoPhoenixFaction phoenixFaction, GameTagDef manufacturableTag)
+        {
+            List<GeoVehicleEquipmentDef> list2 = new List<GeoVehicleEquipmentDef>();
+            list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
+                           where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
+                           select x);
+            list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
+                           where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
+                           select x);
+            list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
+                           where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
+                           select x);
+            list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
+                           where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
+                           select x);
+            using (List<GeoVehicleEquipmentDef>.Enumerator enumerator = list2.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    GeoVehicleEquipmentDef item = enumerator.Current;
+                    if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
+                    {
+                        if (!item.Tags.Contains(manufacturableTag))
+                        {
+                            item.Tags.Add(manufacturableTag);
+                        }
+                        ManufacturableItem item2 = new ManufacturableItem(item);
+                        phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
+                    }
+                }
+            }
+        }
+
+        private static void UnlockWeaponsArmorAndSkins(OptionsManager optionsManager, GeoLevelController geoLevelController, GeoPhoenixFaction phoenixFaction, GameTagDef manufacturableTag)
+        {
+            List<TacticalItemDef> list = new List<TacticalItemDef>();
+            list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
+                          where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
+                          select x);
+            list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
+                          where x.Tags.Contains(geoLevelController.SynedrionFaction.Def.Tag)
+                          select x);
+            list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
+                          where x.Tags.Contains(geoLevelController.AnuFaction.Def.Tag)
+                          select x);
+            list.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<TacticalItemDef>()
+                          where x.Tags.Contains(geoLevelController.NewJerichoFaction.Def.Tag)
+                          select x);
+            list.AddRange(optionsManager.DefsRepo.GetAllDefs<RedeemableCodeDef>().SelectMany((RedeemableCodeDef x) => x.GiftedItems));
+            using (List<TacticalItemDef>.Enumerator enumerator = list.GetEnumerator())
+            {
+                while (enumerator.MoveNext())
+                {
+                    TacticalItemDef item = enumerator.Current;
+                    if (!phoenixFaction.Manufacture.ManufacturableItems.Any((ManufacturableItem x) => x.RelatedItemDef.name == item.name))
+                    {
+                        if (!item.Tags.Contains(manufacturableTag))
+                        {
+                            item.Tags.Add(manufacturableTag);
+                        }
+                        ManufacturableItem item2 = new ManufacturableItem(item);
+                        phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
+                    }
                 }
             }
         }
