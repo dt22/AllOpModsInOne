@@ -82,7 +82,7 @@ namespace AllOpModsInOne
                     tobiasWestGun.Tags[0],
                     tobiasWestGun.Tags[1],
                     tobiasWestGun.Tags[2],
-                    tobiasWestGun.Tags[3],
+                    handGunItemTag,
                     tobiasWestGun.Tags[4],
                     tobiasWestGun.Tags[5],
                     allClass,
