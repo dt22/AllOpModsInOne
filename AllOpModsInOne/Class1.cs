@@ -74,7 +74,8 @@ namespace AllOpModsInOne
 		public bool UnlockAllBionics = true;
 		public bool UnlockAllMutations = true;
 		public bool MaxLevelSoldiers = true;
-		public bool GetNineThousandPlusSP = true;
+		public bool InfiniteSpecialPoints = true;
+		public bool UnlockAllSpecializations = true;
 		public bool TurnOnOtherAdjustments = true;
 		public int VehicleBayAircraftSlots = 2;
 		public int VehicleBayGroundVehicleSlots = 2;

@@ -3,6 +3,7 @@ using Base.Core;
 using Base.Defs;
 using Harmony;
 using PhoenixPoint.Common.Core;
+using PhoenixPoint.Common.Entities;
 using PhoenixPoint.Common.Entities.GameTags;
 using PhoenixPoint.Common.Entities.GameTagsSharedData;
 using PhoenixPoint.Common.Entities.Items;
@@ -34,24 +35,67 @@ namespace AllOpModsInOne
         private static void Postfix()
         {
             if (MyMod.Config.UnlockAllBionics == true)
-            {                
-                InfiniteSp();
-            }
-            if (MyMod.Config.UnlockAllMutations == true)
-            {               
-                MaxLvLSoldiers();
-            }
-			if (MyMod.Config.MaxLevelSoldiers == true)
             {
                 UnlockBionics();
             }
-			if (MyMod.Config.GetNineThousandPlusSP == true)
+            if (MyMod.Config.UnlockAllMutations == true)
             {
                 UnlockMutations();
+            }
+			if (MyMod.Config.MaxLevelSoldiers == true)
+            {
+                MaxLvLSoldiers();
+            }
+			if (MyMod.Config.InfiniteSpecialPoints == true)
+            {              
+                InfiniteSp();
             }
 			if (MyMod.Config.ManufactureEverything == true)
             {
                 ManufactureAll();
+            }
+            if(MyMod.Config.UnlockAllSpecializations == true)
+            {
+                UnlockSpecializations();
+            }
+        }
+
+        private static void UnlockSpecializations()
+        {
+            OptionsManager optionsManager = GameUtl.GameComponent<OptionsManager>();
+            if (optionsManager != null)
+            {
+                GeoLevelController geoLevelControllers = GameUtl.CurrentLevel().GetComponent<GeoLevelController>();
+                if (geoLevelControllers != null)
+                {
+                    string spec1 = "InfiltratorSpecializationDef";
+                    string spec2 = "TechnicianSpecializationDef";
+                    string spec3 = "BerserkerSpecializationDef";
+                    string spec4 = "PriestSpecializationDef";
+                    GeoLevelController geoLevelController = GeoLevelController._ConsoleGetLevelController();
+                    DefRepository defRepository = GameUtl.GameComponent<DefRepository>();
+                    StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase;
+                    SpecializationDef specializationDef1 = defRepository.GetAllDefs<SpecializationDef>().FirstOrDefault((SpecializationDef i) => i.name.IndexOf(spec1, stringComparison) >= 0);
+                    if (specializationDef1 != null)
+                    {
+                        geoLevelController.PhoenixFaction.AddSpecialization(specializationDef1);
+                    }
+                    SpecializationDef specializationDef2 = defRepository.GetAllDefs<SpecializationDef>().FirstOrDefault((SpecializationDef i) => i.name.IndexOf(spec2, stringComparison) >= 0);
+                    if (specializationDef2 != null)
+                    {
+                        geoLevelController.PhoenixFaction.AddSpecialization(specializationDef2);
+                    }
+                    SpecializationDef specializationDef3 = defRepository.GetAllDefs<SpecializationDef>().FirstOrDefault((SpecializationDef i) => i.name.IndexOf(spec3, stringComparison) >= 0);
+                    if (specializationDef3 != null)
+                    {
+                        geoLevelController.PhoenixFaction.AddSpecialization(specializationDef3);
+                    }
+                    SpecializationDef specializationDef4 = defRepository.GetAllDefs<SpecializationDef>().FirstOrDefault((SpecializationDef i) => i.name.IndexOf(spec4, stringComparison) >= 0);
+                    if (specializationDef4 != null)
+                    {
+                        geoLevelController.PhoenixFaction.AddSpecialization(specializationDef4);
+                    }
+                }
             }
         }
 
