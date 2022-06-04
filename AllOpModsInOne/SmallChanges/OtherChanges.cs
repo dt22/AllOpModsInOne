@@ -58,11 +58,23 @@ namespace AllOpModsInOne.SmallChanges
                 ShootAbilityDef ShootRocket = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("LaunchRocket_ShootAbilityDef"));
 
                 rl1.DamagePayload.DamageDeliveryType = DamageDeliveryType.Sphere;
-                rl1.SpreadRadius = 2;
-                rl1.SpreadDegrees = 0;
+                rl1.SpreadRadius = rebuke.SpreadRadius;
+                rl1.SpreadDegrees = rebuke.SpreadDegrees;
                 rl1.UseAimIK = false;
                 rl1.AimTransform = rebuke.AimTransform;
+                rl1.AimPoint = rebuke.AimPoint;
+                rl1.DamagePayload.ParabolaHeightToLengthRatio = 0.3f;
+                rl1.DamagePayload.ProjectileVisuals.TimeToLiveAfterStop = 1.5f;
+                rl1.DamagePayload.ProjectileVisuals.ImpactNormalDisplacement = 0.5f;
+                rl1.DamagePayload.ProjectileVisuals.HitEffect.Offset = 0.02f;
+                rl1.DamagePayload.ProjectileVisuals.HitEffect.Alignment = PhoenixPoint.Common.Core.HitEffect.HitAlignment.SurfaceNormal;
+                rl1.DamagePayload.StopOnFirstHit = false;
+                rl1.DamagePayload.Range = 25;
+                rl1.DamagePayload.AoeRadius = 3.5f;
+                rl1.DamagePayload.ConeRadius = 1;
+                rl1.DamagePayload.ProjectileOrigin = rebuke.DamagePayload.ProjectileOrigin;
                 rl1.Abilities[0] = rebuke.Abilities[0];
+                
             }
             
             if (MyMod.Config.UnlockAllFacilities == true)
