@@ -24,7 +24,7 @@ using UnityEngine.Events;
 namespace AllOpModsInOne
 {
     internal class HarmonyPatches
-    {
+    {      
         public static void Change_Patches()
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
@@ -34,7 +34,7 @@ namespace AllOpModsInOne
     [HarmonyPatch(typeof(PhoenixStatisticsManager), "OnGeoscapeLevelStart")]
     internal static class PhoenixStatisticsManager_OnGeoscapeLevelStart2
     {
-        // Token: 0x06000005 RID: 5 RVA: 0x0000207C File Offset: 0x0000027C
+        public static bool flag = true;
         private static void Postfix()
         {
             if (MyMod.Config.UnlockAllBionics == true)
@@ -61,6 +61,22 @@ namespace AllOpModsInOne
             {
                 UnlockSpecializations();
             }
+            if (MyMod.Config.Get10ThousandOfAllResources == true && flag == true)
+            {
+                GetResources();
+            }
+        }
+
+        private static void GetResources()
+        {
+            GeoLevelController geoLevelController = GeoLevelController._ConsoleGetLevelController();
+            ResourcePack resourcePack = new ResourcePack();
+            foreach (object obj in Enum.GetValues(typeof(ResourceType)))
+            {
+                resourcePack.Add(new ResourceUnit((ResourceType)obj, 10000f));
+            }
+            geoLevelController.ViewerFaction.Wallet.Give(resourcePack, OperationReason.Cheat);
+            flag = false;
         }
 
         private static void UnlockSpecializations()
