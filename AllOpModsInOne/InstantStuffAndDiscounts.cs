@@ -9,6 +9,8 @@ using PhoenixPoint.Geoscape.Entities.Research;
 using PhoenixPoint.Geoscape.Entities.Interception.Equipments;
 using PhoenixPoint.Common.Entities.Equipments;
 using Code.PhoenixPoint.Tactical.Entities.Equipments;
+using PhoenixPoint.Geoscape.Entities.Abilities;
+using PhoenixPoint.Common.Core;
 
 namespace AllOpModsInOne
 {
@@ -80,81 +82,92 @@ namespace AllOpModsInOne
 
             if (MyMod.Config.EverythingHalfOff == true)
             {
+                ActivateBaseAbilityDef baseCost = Repo.GetAllDefs<ActivateBaseAbilityDef>().FirstOrDefault(rd => rd.name.Contains("ActivateBaseAbilityDef"));
+                TheMarketplaceSettingsDef MarketPlaceCost = Repo.GetAllDefs<TheMarketplaceSettingsDef>().FirstOrDefault(rd => rd.name.Contains("TheMarketplaceSettingsDef"));
+
+                baseCost.Cost *= 0.5f;
+                //MarketPlaceCost.PriceModulus *= 0.5f;
+
+                for(int i = 0; i < MarketPlaceCost.TheMarketplaceItemPriceMultipliers.Length; i++)
+                {
+                    MarketPlaceCost.TheMarketplaceItemPriceMultipliers[i].PriceMultiplier *= 0.5f;
+                }
+
                 foreach (PhoenixFacilityDef facility in Repo.GetAllDefs<PhoenixFacilityDef>().Where(rd => rd.name.Contains("PhoenixFacilityDef")))
                 {
                     facility.ResourceCost = facility.ResourceCost/2;
                 }
                 foreach (TacticalItemDef item in Repo.GetAllDefs<TacticalItemDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;                 
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;                 
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (WeaponDef weapon in Repo.GetAllDefs<WeaponDef>())
                 {
-                    weapon.ManufactureMaterials /= 2;
-                    weapon.ManufactureTech /= 2;
-                    weapon.ManufactureMutagen /= 2;
-                    weapon.ManufactureLivingCrystals /= 2;
-                    weapon.ManufactureProteanMutane /= 2;
-                    weapon.ManufactureOricalcum /= 2;
+                    weapon.ManufactureMaterials *= 0.5f;
+                    weapon.ManufactureTech *= 0.5f;
+                    weapon.ManufactureMutagen *= 0.5f;
+                    weapon.ManufactureLivingCrystals *= 0.5f;
+                    weapon.ManufactureProteanMutane *= 0.5f;
+                    weapon.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (GroundVehicleItemDef item in Repo.GetAllDefs<GroundVehicleItemDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (GroundVehicleModuleDef item in Repo.GetAllDefs<GroundVehicleModuleDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (GroundVehicleWeaponDef item in Repo.GetAllDefs<GroundVehicleWeaponDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (GeoVehicleWeaponDef item in Repo.GetAllDefs<GeoVehicleWeaponDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }
                 foreach (GeoVehicleModuleDef item in Repo.GetAllDefs<GeoVehicleModuleDef>())
                 {
-                    item.ManufactureMaterials /= 2;
-                    item.ManufactureTech /= 2;
-                    item.ManufactureMutagen /= 2;
-                    item.ManufactureLivingCrystals /= 2;
-                    item.ManufactureProteanMutane /= 2;
-                    item.ManufactureOricalcum /= 2;
+                    item.ManufactureMaterials *= 0.5f;
+                    item.ManufactureTech *= 0.5f;
+                    item.ManufactureMutagen *= 0.5f;
+                    item.ManufactureLivingCrystals *= 0.5f;
+                    item.ManufactureProteanMutane *= 0.5f;
+                    item.ManufactureOricalcum *= 0.5f;
                 }              
             }
         }
