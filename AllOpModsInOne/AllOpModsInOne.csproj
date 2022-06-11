@@ -61,11 +61,13 @@
     <Compile Include="Corruption.cs" />
     <Compile Include="EliteSoldiers.cs" />
     <Compile Include="HarmonyPatches.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="InstantStuffAndDiscounts.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="MountedWeaponsMechArms.cs" />
     <Compile Include="NotForNexuesRelease.cs" />
     <Compile Include="OpArmor.cs" />
+    <Compile Include="PromoSkinArmor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmallChanges\OtherChanges.cs" />
     <Compile Include="SmallChanges\MutationsAndAugmentations.cs" />

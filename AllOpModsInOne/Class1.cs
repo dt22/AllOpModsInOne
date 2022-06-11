@@ -91,15 +91,14 @@ namespace AllOpModsInOne
 		internal static ModConfig Config;
 		internal static string LogPath;
 		internal static string ModDirectory;
+		internal static readonly DefRepository Repo = GameUtl.GameComponent<DefRepository>();
+		internal static readonly SharedData Shared = GameUtl.GameComponent<SharedData>();
 		public static void HomeMod(Func<string, object, object> api = null)
         {
             MyMod.Config = api("config", null) as ModConfig ?? new ModConfig();
             HarmonyInstance.Create("AllOpModsInOne").PatchAll();
-            api?.Invoke("log verbose", "Mod Initialised.");
-
-            DefRepository Repo = GameUtl.GameComponent<DefRepository>();
-            SharedData Shared = GameUtl.GameComponent<SharedData>();
-
+            api?.Invoke("log verbose", "Mod Initialised.");           
+           
 		    ModDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 		    LogPath = Path.Combine(ModDirectory, "AllOpModsInOne.log");
 		    Logger.Initialize(LogPath, Config.Debug, ModDirectory, nameof(MyMod));

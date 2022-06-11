@@ -1,5 +1,6 @@
 ﻿using Base.Core;
 using Base.Defs;
+using PhoenixPoint.Common.Core;
 using PhoenixPoint.Common.Entities;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace AllOpModsInOne
 {
     internal class SoldierSkills
     {
+        private static readonly DefRepository Repo = MyMod.Repo;
+        private static readonly SharedData Shared = MyMod.Shared;
         public static void Skills()
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
