@@ -65,6 +65,43 @@ namespace AllOpModsInOne
             {
                 GetResources();
             }
+            if(MyMod.Config.HealAllSoldiersAfterEveryMission == true)
+            {
+                SetHp();
+            }
+            if (MyMod.Config.ResetStaminaToFullAfterEveryMission == true)
+            {
+                SetStamina();
+            }
+        }
+
+        private static void SetStamina()
+        {
+            int stamina = 100;
+
+            (from c in GeoLevelController._ConsoleGetLevelController().ViewerFaction.Characters
+             where c.Fatigue != null
+             select c).ForEach(delegate (GeoCharacter c)
+             {
+                 c.Fatigue.Stamina.Set((float)stamina, true);
+             });
+        }
+
+        private static void SetHp()
+        {
+            int hp = 500;
+            GeoLevelController geoLevelController = GeoLevelController._ConsoleGetLevelController();
+            geoLevelController.ViewerFaction.Characters.ForEach(delegate (GeoCharacter c)
+            {
+                c.Health.Set((float)hp, true);
+            });
+            foreach (GeoCharacter geoCharacter in geoLevelController.ViewerFaction.Characters.ToArray<GeoCharacter>())
+            {
+                if (!geoCharacter.IsAlive)
+                {
+                    geoLevelController.ViewerFaction.KillCharacter(geoCharacter, CharacterDeathReason.Cheat);
+                }
+            }
         }
 
         private static void GetResources()

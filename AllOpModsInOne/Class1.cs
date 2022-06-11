@@ -76,7 +76,9 @@ namespace AllOpModsInOne
 		public bool MaxLevelSoldiers = true;
 		public bool InfiniteSpecialPoints = true;
 		public bool UnlockAllSpecializations = true;
-		public bool Get10ThousandOfAllResources = true;
+        public bool Get10ThousandOfAllResources = true;
+		public bool HealAllSoldiersAfterEveryMission = true;
+		public bool ResetStaminaToFullAfterEveryMission = true;
 		public bool TurnOnOtherAdjustments = true;
 		public int VehicleBayAircraftSlots = 2;
 		public int VehicleBayGroundVehicleSlots = 2;
