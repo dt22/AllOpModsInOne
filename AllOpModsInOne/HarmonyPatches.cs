@@ -69,7 +69,7 @@ namespace AllOpModsInOne
             {
                 SetHp();
             }
-            if (MyMod.Config.NeverGetTiredOrExauhstedAfterMissions == true)
+            if (MyMod.Config.NeverGetTiredOrExaustedAfterMissions == true)
             {
                 SetStamina();
             }

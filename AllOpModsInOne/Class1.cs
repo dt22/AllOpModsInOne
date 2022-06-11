@@ -78,7 +78,7 @@ namespace AllOpModsInOne
 		public bool UnlockAllSpecializations = true;
         public bool Get10ThousandOfAllResources = true;
 		public bool HealAllSoldiersAfterEveryMission = true;
-		public bool NeverGetTiredOrExauhstedAfterMissions = true;
+		public bool NeverGetTiredOrExaustedAfterMissions = true;
 		public bool TurnOnOtherAdjustments = true;
 		public int VehicleBayAircraftSlots = 2;
 		public int VehicleBayGroundVehicleSlots = 2;
