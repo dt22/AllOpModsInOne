@@ -49,7 +49,7 @@ namespace AllOpModsInOne.SmallChanges
                 WeaponDef SG = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Redemptor_WeaponDef"));
                 WeaponDef Pistol = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Tormentor_WeaponDef"));
 
-                AR.SpreadDegrees = 1.25f;
+                AR.SpreadDegrees = 1f;
                 AR.DamagePayload.DamageKeywords = new List<DamageKeywordPair>()
                 {
                     new DamageKeywordPair()
@@ -60,7 +60,7 @@ namespace AllOpModsInOne.SmallChanges
                     new DamageKeywordPair()
                     {
                         DamageKeywordDef = Shared.SharedDamageKeywords.ShreddingKeyword,
-                        Value = 1,
+                        Value = 2,
                     },
                     new DamageKeywordPair()
                     {
