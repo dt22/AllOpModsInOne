@@ -74,7 +74,9 @@ namespace AllOpModsInOne
 		public bool UnlockAllBionics = true;
 		public bool UnlockAllMutations = true;
 		public bool MaxLevelSoldiers = true;
+		public bool Give350XPToAllSoldiersOnce = true;
 		public bool InfiniteSpecialPoints = true;
+		public bool Get350SpecialPointsOnce = true;
 		public bool UnlockAllSpecializations = true;
         public bool Get10ThousandOfAllResources = true;
 		public bool HealAllSoldiersAfterEveryMission = true;

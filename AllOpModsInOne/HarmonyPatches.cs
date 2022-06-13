@@ -49,7 +49,15 @@ namespace AllOpModsInOne
             {
                 MaxLvLSoldiers();
             }
-			if (MyMod.Config.InfiniteSpecialPoints == true)
+            if (MyMod.Config.Give350XPToAllSoldiersOnce == true && flag == true)
+            {
+                Give350XP();
+            }
+            if (MyMod.Config.Get350SpecialPointsOnce == true && flag == true)
+            {
+                Give350SP();
+            }
+            if (MyMod.Config.InfiniteSpecialPoints == true)
             {              
                 InfiniteSp();
             }
@@ -73,6 +81,41 @@ namespace AllOpModsInOne
             {
                 SetStamina();
             }
+        }
+
+        private static void Give350XP()
+        {
+            OptionsManager optionsManager = GameUtl.GameComponent<OptionsManager>();
+            if (optionsManager != null)
+            {
+                GeoLevelController geoLevelController = GameUtl.CurrentLevel().GetComponent<GeoLevelController>();
+                if (geoLevelController != null)
+                {
+                    int exp = 350;
+                    (from p in GeoLevelController._ConsoleGetLevelController().ViewerFaction.Characters
+                     where p.Progression != null
+                     select p).ForEach(delegate (GeoCharacter c)
+                     {
+                         c.Progression.LevelProgression.AddExperience(exp);
+                     });
+                }
+            }
+            flag = false;
+        }
+
+        private static void Give350SP()
+        {
+            OptionsManager optionsManager = GameUtl.GameComponent<OptionsManager>();
+            if (optionsManager != null)
+            {
+                GeoLevelController geoLevelController = GameUtl.CurrentLevel().GetComponent<GeoLevelController>();
+                if (geoLevelController != null)
+                {
+                    int skillPoints = 350;
+                    GeoLevelController._ConsoleGetLevelController().PhoenixFaction.Skillpoints += skillPoints;
+                }
+            }
+            flag = false;
         }
 
         private static void SetStamina()
