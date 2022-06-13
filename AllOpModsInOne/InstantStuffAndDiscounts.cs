@@ -46,14 +46,21 @@ namespace AllOpModsInOne
                 {
                     item.ManufacturePointsCost = 0;
                 }
-                foreach (GeoVehicleWeaponDef item in Repo.GetAllDefs<GeoVehicleWeaponDef>())
+                foreach (ItemDef items in Repo.GetAllDefs<ItemDef>())
                 {
-                    item.ManufacturePointsCost = 0;
+                    if (items.name.Contains("BasicGeoModule_TestEquipmentDef"))
+                    {
+                        foreach (GeoVehicleWeaponDef item1 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
+                        {
+                            item1.ManufacturePointsCost = 0;
+                        }
+                        foreach (GeoVehicleModuleDef item2 in Repo.GetAllDefs<GeoVehicleModuleDef>())
+                        {
+                            item2.ManufacturePointsCost = 0;
+                        }
+                    }
                 }
-                foreach (GeoVehicleModuleDef item in Repo.GetAllDefs<GeoVehicleModuleDef>())
-                {
-                    item.ManufacturePointsCost = 0;
-                }
+                
             }
             
             if(MyMod.Config.InstantResearch == true)
@@ -142,6 +149,30 @@ namespace AllOpModsInOne
                     item.ManufactureProteanMutane *= 0.5f;
                     item.ManufactureOricalcum *= 0.5f;
                 }
+                foreach (ItemDef item in Repo.GetAllDefs<ItemDef>())
+                {
+                    if (item.name.Contains("BasicGeoModule_TestEquipmentDef"))
+                    {
+                        foreach (GeoVehicleWeaponDef item2 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
+                        {
+                            item2.ManufactureMaterials *= 0.5f;
+                            item2.ManufactureTech *= 0.5f;
+                            item2.ManufactureMutagen *= 0.5f;
+                            item2.ManufactureLivingCrystals *= 0.5f;
+                            item2.ManufactureProteanMutane *= 0.5f;
+                            item2.ManufactureOricalcum *= 0.5f;
+                        }
+                        foreach (GeoVehicleModuleDef item3 in Repo.GetAllDefs<GeoVehicleModuleDef>())
+                        {
+                            item3.ManufactureMaterials *= 0.5f;
+                            item3.ManufactureTech *= 0.5f;
+                            item3.ManufactureMutagen *= 0.5f;
+                            item3.ManufactureLivingCrystals *= 0.5f;
+                            item3.ManufactureProteanMutane *= 0.5f;
+                            item3.ManufactureOricalcum *= 0.5f;
+                        }
+                    }
+                }
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
                     item.ManufactureMaterials *= 0.5f;
@@ -150,25 +181,7 @@ namespace AllOpModsInOne
                     item.ManufactureLivingCrystals *= 0.5f;
                     item.ManufactureProteanMutane *= 0.5f;
                     item.ManufactureOricalcum *= 0.5f;
-                }
-                foreach (GeoVehicleWeaponDef item in Repo.GetAllDefs<GeoVehicleWeaponDef>())
-                {
-                    item.ManufactureMaterials *= 0.5f;
-                    item.ManufactureTech *= 0.5f;
-                    item.ManufactureMutagen *= 0.5f;
-                    item.ManufactureLivingCrystals *= 0.5f;
-                    item.ManufactureProteanMutane *= 0.5f;
-                    item.ManufactureOricalcum *= 0.5f;
-                }
-                foreach (GeoVehicleModuleDef item in Repo.GetAllDefs<GeoVehicleModuleDef>())
-                {
-                    item.ManufactureMaterials *= 0.5f;
-                    item.ManufactureTech *= 0.5f;
-                    item.ManufactureMutagen *= 0.5f;
-                    item.ManufactureLivingCrystals *= 0.5f;
-                    item.ManufactureProteanMutane *= 0.5f;
-                    item.ManufactureOricalcum *= 0.5f;
-                }              
+                }                  
             }
         }
     }
