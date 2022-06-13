@@ -7,6 +7,7 @@ using Base.UI;
 using PhoenixPoint.Common.Core;
 using PhoenixPoint.Common.Entities.GameTags;
 using PhoenixPoint.Common.Entities.Items;
+using PhoenixPoint.Tactical.Entities;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Entities.Effects.ApplicationConditions;
 using PhoenixPoint.Tactical.Entities.Effects.DamageTypes;
@@ -71,12 +72,38 @@ namespace AllOpModsInOne
             AddAbilityStatusDef oilCrabStatus = Repo.GetAllDefs<AddAbilityStatusDef>().FirstOrDefault(a => a.name.Equals("OilCrab_AddAbilityStatusDef"));
             ActorHasTagEffectConditionDef oilCrabCondition = (ActorHasTagEffectConditionDef)oilCrabStatus.ApplicationConditions[0];
             TacticalItemDef assaultTorsoGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Assault_Torso_Gold_BodyPartDef"));
+            TacticalItemDef assaultHelmetGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Assault_Helmet_Gold_BodyPartDef"));
             TacticalItemDef SniperHelmetGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Sniper_Helmet_Gold_BodyPartDef"));
             TacticalItemDef HeavyTorsoGoldGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Heavy_Torso_Gold_BodyPartDef"));
             ApplyStatusAbilityDef SenseLocate = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(p => p.name.Equals("SenseLocate_AbilityDef"));
-            
+            ApplyStatusAbilityDef crystalStacks = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(p => p.name.Equals("CrystalStacks_DamageAmplification_AbilityDef"));
+            ApplyDamageEffectAbilityDef viralAreaAttack = Repo.GetAllDefs<ApplyDamageEffectAbilityDef>().FirstOrDefault(p => p.name.Equals("ViralAreaAttack_ApplyDamageEffect_AbilityDef"));
+            TacCharacterDef Exalted = Repo.GetAllDefs<TacCharacterDef>().FirstOrDefault(p => p.name.Equals("AN_Exalted_TacCharacterDef"));
+
             oilCrabCondition.GameTag = Repo.GetAllDefs<GameTagDef>().FirstOrDefault(a => a.name.Equals("SmallGeyser_GameTagDef"));
             oilCrabCondition.HasTag = false;
+
+            string skillName4 = "HumanReinforcements_AbilityDef";
+            SpawnActorAbilityDef source4 = Repo.GetAllDefs<SpawnActorAbilityDef>().FirstOrDefault(p => p.name.Equals("Decoy_AbilityDef"));
+            SpawnActorAbilityDef SpawnActor = Helper.CreateDefFromClone(
+                source4,
+                "F128D091-E92B-4765-82BA-6F46E654E125",
+                skillName4);
+            SpawnActor.ViewElementDef = Helper.CreateDefFromClone(
+                source4.ViewElementDef,
+               "AFF08D93-FD49-47F7-A05A-D9A246684248",
+               skillName4);
+            SpawnActor.CharacterProgressionData = Helper.CreateDefFromClone(
+                source4.CharacterProgressionData,
+               "4D9DA012-78BA-4A6B-B84D-6288161986D0",
+               skillName4);
+
+            SpawnActor.TacCharacterDef = Exalted;
+            SpawnActor.ActorComponentSetDef = Exalted.ComponentSetDef;
+            SpawnActor.ActorTags = null;
+            SpawnActor.UseSelfAsTemplate = false;
+            SpawnActor.ViewElementDef.DisplayName1 = new LocalizedTextBind("Reinforcements", true);
+            SpawnActor.ViewElementDef.Description = new LocalizedTextBind("Call on the exalted to reinforce your squad", true);
 
             if (MyMod.Config.GoldArmorSkinsHaveSpecialAbilities)
             {
@@ -84,14 +111,19 @@ namespace AllOpModsInOne
                 {
                     oilCrab,
                 };
-
-                SniperHelmetGold.Abilities = new AbilityDef[]
+                assaultHelmetGold.Abilities = new AbilityDef[]
                 {
                     SenseLocate,
                 };
-                HeavyTorsoGoldGold.Abilities = new AbilityDef[]
+                SniperHelmetGold.Abilities = new AbilityDef[]
                 {
                     addarmour,
+                    SpawnActor
+                };
+                HeavyTorsoGoldGold.Abilities = new AbilityDef[]
+                {                   
+                    crystalStacks,
+                    viralAreaAttack,
                 };
             }            
         }
