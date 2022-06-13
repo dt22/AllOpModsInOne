@@ -8,6 +8,7 @@ using PhoenixPoint.Common.Core;
 using PhoenixPoint.Common.Entities.GameTags;
 using PhoenixPoint.Common.Entities.Items;
 using PhoenixPoint.Tactical.Entities.Abilities;
+using PhoenixPoint.Tactical.Entities.Effects.ApplicationConditions;
 using PhoenixPoint.Tactical.Entities.Effects.DamageTypes;
 using PhoenixPoint.Tactical.Entities.Equipments;
 using PhoenixPoint.Tactical.Entities.Statuses;
@@ -59,6 +60,40 @@ namespace AllOpModsInOne
                     Value = 10,
                 },           
             };
+
+            string skillName3 = "GoldTorsoOilCrab_AbilityDef";
+            DeathBelcherAbilityDef source3 = Repo.GetAllDefs<DeathBelcherAbilityDef>().FirstOrDefault(p => p.name.Equals("Oilcrab_Die_DeathBelcher_AbilityDef"));
+            DeathBelcherAbilityDef oilCrab = Helper.CreateDefFromClone(
+                source3,
+                "54CD9E74-7F1D-4D84-8316-FCBF56C0D38D",
+                skillName3);
+
+            AddAbilityStatusDef oilCrabStatus = Repo.GetAllDefs<AddAbilityStatusDef>().FirstOrDefault(a => a.name.Equals("OilCrab_AddAbilityStatusDef"));
+            ActorHasTagEffectConditionDef oilCrabCondition = (ActorHasTagEffectConditionDef)oilCrabStatus.ApplicationConditions[0];
+            TacticalItemDef assaultTorsoGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Assault_Torso_Gold_BodyPartDef"));
+            TacticalItemDef SniperHelmetGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Sniper_Helmet_Gold_BodyPartDef"));
+            TacticalItemDef HeavyTorsoGoldGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Heavy_Torso_Gold_BodyPartDef"));
+            ApplyStatusAbilityDef SenseLocate = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(p => p.name.Equals("SenseLocate_AbilityDef"));
+            
+            oilCrabCondition.GameTag = Repo.GetAllDefs<GameTagDef>().FirstOrDefault(a => a.name.Equals("SmallGeyser_GameTagDef"));
+            oilCrabCondition.HasTag = false;
+
+            if (MyMod.Config.GoldArmorSkinsHaveSpecialAbilities)
+            {
+                assaultTorsoGold.Abilities = new AbilityDef[]
+                {
+                    oilCrab,
+                };
+
+                SniperHelmetGold.Abilities = new AbilityDef[]
+                {
+                    SenseLocate,
+                };
+                HeavyTorsoGoldGold.Abilities = new AbilityDef[]
+                {
+                    addarmour,
+                };
+            }            
         }
 
     }

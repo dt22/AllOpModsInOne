@@ -73,11 +73,11 @@ namespace AllOpModsInOne
             {
                 GetResources();
             }
-            if(MyMod.Config.HealAllSoldiersAfterEveryMission == true)
+            if(MyMod.Config.HealAllSoldiersAfterMissions == true)
             {
                 SetHp();
             }
-            if (MyMod.Config.NeverGetTiredOrExhaustedAfterMissions == true)
+            if (MyMod.Config.NeverGetTiredOrExhausted == true)
             {
                 SetStamina();
             }

@@ -79,8 +79,10 @@ namespace AllOpModsInOne
 		public bool Get350SpecialPointsOnce = true;
 		public bool UnlockAllSpecializations = true;
         public bool Get10ThousandOfAllResources = true;
-		public bool HealAllSoldiersAfterEveryMission = true;
-		public bool NeverGetTiredOrExhaustedAfterMissions = true;
+		public bool HealAllSoldiersAfterMissions = true;
+		public bool NeverGetTiredOrExhausted = true;
+		public bool OPKaosWeapons = true;
+		public bool GoldArmorSkinsHaveSpecialAbilities = true;
 		public bool TurnOnOtherAdjustments = true;
 		public int VehicleBayAircraftSlots = 2;
 		public int VehicleBayGroundVehicleSlots = 2;
@@ -115,6 +117,7 @@ namespace AllOpModsInOne
 			SmallChanges.MutationsAndAugmentations.Change_PermanentAug();
 			SmallChanges.OtherChanges.Change_Others();
 			NotForNexuesRelease.MyStuff();
+			PromoSkinArmor.Create_PromoSkinArmor();
 		}       
         // Token: 0x06000002 RID: 2 RVA: 0x00002058 File Offset: 0x00000258
         public static void MainMod(Func<string, object, object> api)

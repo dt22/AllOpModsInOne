@@ -9,6 +9,9 @@ using System.Linq;
 using PhoenixPoint.Geoscape.Entities.Research.Reward;
 using PhoenixPoint.Geoscape.Entities.Research;
 using PhoenixPoint.Geoscape.Entities.PhoenixBases.FacilityComponents;
+using PhoenixPoint.Common.Core;
+using PhoenixPoint.Tactical.Entities.DamageKeywords;
+using System.Collections.Generic;
 
 namespace AllOpModsInOne.SmallChanges
 {
@@ -17,6 +20,7 @@ namespace AllOpModsInOne.SmallChanges
         public static void Change_Others()
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
+            SharedData Shared = GameUtl.GameComponent<SharedData>();
             ResearchDef atmosphiricAnalysis = Repo.GetAllDefs<ResearchDef>().FirstOrDefault(ged => ged.name.Equals("PX_AtmosphericAnalysis_ResearchDef"));
             PhoenixFacilityDef VehicleBay = Repo.GetAllDefs<PhoenixFacilityDef>().FirstOrDefault(ged => ged.name.Equals("VehicleBay_PhoenixFacilityDef"));
             VehicleSlotFacilityComponentDef VehicleBaySlotComponent = Repo.GetAllDefs<VehicleSlotFacilityComponentDef>().FirstOrDefault(ged => ged.name.Equals("E_Element0 [VehicleBay_PhoenixFacilityDef]"));
@@ -36,6 +40,82 @@ namespace AllOpModsInOne.SmallChanges
                 Machinegun.DamagePayload.StopOnFirstHit = false;
                 Machinegun.DamagePayload.AutoFireShotCount = 20;
                 Machinegun.SpreadDegrees = 2.22704697f;
+            }
+            if (MyMod.Config.OPKaosWeapons == true)
+            {
+                WeaponDef AR = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Obliterator_WeaponDef"));
+                WeaponDef SR = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Subjector_WeaponDef"));
+                WeaponDef HC = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Devastator_WeaponDef"));
+                WeaponDef SG = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Redemptor_WeaponDef"));
+                WeaponDef Pistol = Repo.GetAllDefs<WeaponDef>().FirstOrDefault(a => a.name.Equals("KS_Tormentor_WeaponDef"));
+
+                AR.SpreadDegrees = 1.25f;
+                AR.DamagePayload.DamageKeywords = new List<DamageKeywordPair>()
+                {
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.DamageKeyword,
+                        Value = 40,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.ShreddingKeyword,
+                        Value = 1,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.ParalysingKeyword,
+                        Value = 2,
+                    },
+                };
+
+                SR.SpreadDegrees = 0.4f;
+                SR.DamagePayload.DamageKeywords = new List<DamageKeywordPair>()
+                {
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef= Shared.SharedDamageKeywords.DamageKeyword,
+                        Value = 130,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.PoisonousKeyword,
+                        Value = 30,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.SyphonKeyword,
+                        Value = 30
+                    }
+                };
+
+                HC.DamagePayload.DamageKeywords = new List<DamageKeywordPair>()
+                {
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef= Shared.SharedDamageKeywords.DamageKeyword,
+                        Value = 200,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.ShockKeyword,
+                        Value = 200,
+                    },
+                    new DamageKeywordPair()
+                    {
+                        DamageKeywordDef = Shared.SharedDamageKeywords.ShreddingKeyword,
+                        Value = 20,
+                    },
+                };
+
+                HC.SpreadDegrees = 1.6f;
+
+                SG.DamagePayload.ProjectilesPerShot = 10;
+                SG.DamagePayload.DamageKeywords[0].Value = 50;
+
+                Pistol.DamagePayload.DamageKeywords[0].Value = 60;
+                Pistol.DamagePayload.DamageKeywords[1].Value = 20;
+                Pistol.SpreadDegrees = 1.4f;
             }
 
             if (MyMod.Config.IncreaseSoldierInventorySlots == true)
