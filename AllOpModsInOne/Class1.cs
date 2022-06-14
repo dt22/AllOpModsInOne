@@ -114,11 +114,10 @@ namespace AllOpModsInOne
             Corruption.Change_Corruption();           
             SoldierSkills.Skills();
 			HarmonyPatches.Change_Patches();
-			SmallChanges.MutationsAndAugmentations.Change_PermanentAug();
-			SmallChanges.OtherChanges.Change_Others();
+			MutationsAndAugmentations.Change_PermanentAug();
+			OtherChanges.Change_Others();
 			NotForNexuesRelease.MyStuff();
 			PromoSkinArmor.Create_PromoSkinArmor();
-			PromoSkinArmor.AddAbilities();
 		}       
         // Token: 0x06000002 RID: 2 RVA: 0x00002058 File Offset: 0x00000258
         public static void MainMod(Func<string, object, object> api)

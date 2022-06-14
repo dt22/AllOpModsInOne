@@ -24,40 +24,40 @@ namespace AllOpModsInOne
             if (MyMod.Config.StartWithEliteSoldiers == true)
             {
                 easy.StartingSquadTemplate = new TacCharacterDef[]
-            {
-                pirateKing,
-                synedrionLeader,
-                godly,
-                easy.StartingSquadTemplate[3],
-                tobias,
-                easy.StartingSquadTemplate[5],
-            };
+                {
+                    pirateKing,
+                    synedrionLeader,
+                    godly,
+                    easy.StartingSquadTemplate[3],
+                    tobias,
+                    easy.StartingSquadTemplate[5],
+                };
                 standard.StartingSquadTemplate = new TacCharacterDef[]
                 {
-                standard.StartingSquadTemplate[0],
-                tobias,
-                synedrionLeader,
-                standard.StartingSquadTemplate[3],
-                pirateKing,
-                godly,
+                    standard.StartingSquadTemplate[0],
+                    tobias,
+                    synedrionLeader,
+                    standard.StartingSquadTemplate[3],
+                    pirateKing,
+                    godly,
                 };
                 hard.StartingSquadTemplate = new TacCharacterDef[]
                 {
-                pirateKing,
-                hard.StartingSquadTemplate[1],
-                synedrionLeader,
-                hard.StartingSquadTemplate[3],
-                tobias,
-                godly,
+                    pirateKing,
+                    hard.StartingSquadTemplate[1],
+                    synedrionLeader,
+                    hard.StartingSquadTemplate[3],
+                    tobias,
+                    godly,
                 };
                 veryhard.StartingSquadTemplate = new TacCharacterDef[]
                 {
-                pirateKing,
-                veryhard.StartingSquadTemplate[1],
-                synedrionLeader,
-                veryhard.StartingSquadTemplate[3],
-                tobias,
-                godly,
+                    pirateKing,
+                    veryhard.StartingSquadTemplate[1],
+                    synedrionLeader,
+                    veryhard.StartingSquadTemplate[3],
+                    tobias,
+                    godly,
                 };
             }
         }

@@ -47,7 +47,7 @@ namespace AllOpModsInOne
                             geoEventCH0WIN.GeoscapeEventData.Choices[0].Outcome.VariablesChange[0],
                         };
 
-                        geoEventCH0WIN2.GeoscapeEventData.Choices[0].Outcome.VariablesChange = new List<OutcomeVariableChange>();
+                        geoEventCH0WIN2.GeoscapeEventData.Choices[0].Outcome.VariablesChange = null;
             }
                                            
         }

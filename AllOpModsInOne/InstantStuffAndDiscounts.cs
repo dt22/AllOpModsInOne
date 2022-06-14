@@ -37,17 +37,16 @@ namespace AllOpModsInOne
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
                     item.ManufacturePointsCost = 0;
+                }              
+                foreach (GeoVehicleWeaponDef item1 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
+                {
+                    item1.ManufacturePointsCost = 0;
                 }
-               
-                        foreach (GeoVehicleWeaponDef item1 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
-                        {
-                            item1.ManufacturePointsCost = 0;
-                        }
-                        foreach (GeoVehicleModuleDef item2 in Repo.GetAllDefs<GeoVehicleModuleDef>())
-                        {
-                            item2.ManufacturePointsCost = 0;
-                        }               
-                }
+                foreach (GeoVehicleModuleDef item2 in Repo.GetAllDefs<GeoVehicleModuleDef>())
+                {
+                    item2.ManufacturePointsCost = 0;
+                }               
+            }
             
             if(MyMod.Config.InstantResearch == true)
             {
@@ -89,7 +88,7 @@ namespace AllOpModsInOne
 
                 foreach (PhoenixFacilityDef facility in Repo.GetAllDefs<PhoenixFacilityDef>().Where(rd => rd.name.Contains("PhoenixFacilityDef")))
                 {
-                    facility.ResourceCost = facility.ResourceCost/2;
+                    facility.ResourceCost /= 2;
                 }
                 foreach (TacticalItemDef item in Repo.GetAllDefs<TacticalItemDef>())
                 {
@@ -137,24 +136,24 @@ namespace AllOpModsInOne
                 //    item.ManufactureOricalcum *= 0.5f;
                 //}
                 
-                        foreach (GeoVehicleWeaponDef item2 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
-                        {
-                            item2.ManufactureMaterials *= 0.5f;
-                            item2.ManufactureTech *= 0.5f;
-                            item2.ManufactureMutagen *= 0.5f;
-                            item2.ManufactureLivingCrystals *= 0.5f;
-                            item2.ManufactureProteanMutane *= 0.5f;
-                            item2.ManufactureOricalcum *= 0.5f;
-                        }
-                        foreach (GeoVehicleModuleDef item3 in Repo.GetAllDefs<GeoVehicleModuleDef>())
-                        {
-                            item3.ManufactureMaterials *= 0.5f;
-                            item3.ManufactureTech *= 0.5f;
-                            item3.ManufactureMutagen *= 0.5f;
-                            item3.ManufactureLivingCrystals *= 0.5f;
-                            item3.ManufactureProteanMutane *= 0.5f;
-                            item3.ManufactureOricalcum *= 0.5f;
-                        }
+                foreach (GeoVehicleWeaponDef item2 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
+                {
+                    item2.ManufactureMaterials *= 0.5f;
+                    item2.ManufactureTech *= 0.5f;
+                    item2.ManufactureMutagen *= 0.5f;
+                    item2.ManufactureLivingCrystals *= 0.5f;
+                    item2.ManufactureProteanMutane *= 0.5f;
+                    item2.ManufactureOricalcum *= 0.5f;
+                }
+                foreach (GeoVehicleModuleDef item3 in Repo.GetAllDefs<GeoVehicleModuleDef>())
+                {
+                    item3.ManufactureMaterials *= 0.5f;
+                    item3.ManufactureTech *= 0.5f;
+                    item3.ManufactureMutagen *= 0.5f;
+                    item3.ManufactureLivingCrystals *= 0.5f;
+                    item3.ManufactureProteanMutane *= 0.5f;
+                    item3.ManufactureOricalcum *= 0.5f;
+                }
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
                     item.ManufactureMaterials *= 0.5f;
