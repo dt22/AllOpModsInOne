@@ -354,10 +354,7 @@ namespace AllOpModsInOne
         private static void UnlockAircraftEquipment(OptionsManager optionsManager, GeoLevelController geoLevelController, GeoPhoenixFaction phoenixFaction, GameTagDef manufacturableTag)
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
-            foreach (ItemDef items in Repo.GetAllDefs<ItemDef>())
-            {
-                if (items.name.Contains("BasicGeoModule_TestEquipmentDef"))
-                {
+            
                     List<GeoVehicleEquipmentDef> list2 = new List<GeoVehicleEquipmentDef>();
                     list2.AddRange(from x in optionsManager.DefsRepo.GetAllDefs<GeoVehicleEquipmentDef>()
                                    where x.Tags.Contains(geoLevelController.PhoenixFactionDef.Tag)
@@ -384,8 +381,6 @@ namespace AllOpModsInOne
                                 }
                                 ManufacturableItem item2 = new ManufacturableItem(item);
                                 phoenixFaction.Manufacture.ManufacturableItems.Add(item2);
-                            }
-                        }
                     }
                 }
             }

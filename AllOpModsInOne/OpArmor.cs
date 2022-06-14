@@ -16,10 +16,6 @@ namespace AllOpModsInOne
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
             if(MyMod.Config.OpArmorAbilitiesEnabled == true)
             {
-                foreach(TacticalAbilityDef tacAbility in Repo.GetAllDefs<TacticalAbilityDef>())
-                {
-                    if (tacAbility.name.Contains("Mutoid_Adapt_Arm_ParalyzeLimb_AbilityDef"))
-                    {
                         TacticalItemDef tentacleTorso = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(a => a.name.Equals("AN_Berserker_Watcher_Torso_BodyPartDef"));
                         tentacleTorso.Abilities = new AbilityDef[]
                         {
@@ -51,10 +47,7 @@ namespace AllOpModsInOne
                             Repo.GetAllDefs<AbilityDef>().FirstOrDefault(a => a.name.Equals("Mutoid_Adapt_Arm_FireWorm_AbilityDef")),
                             Repo.GetAllDefs<AbilityDef>().FirstOrDefault(a => a.name.Equals("Mutoid_Adapt_Arm_AcidWorm_AbilityDef")),
                             Repo.GetAllDefs<AbilityDef>().FirstOrDefault(a => a.name.Equals("Mutoid_Adapt_Arm_GooGrenade_AbilityDef")),
-                        };
-                    }
-                }
-                
+                        };                
 
                 ItemDef shadowLegs = Repo.GetAllDefs<ItemDef>().FirstOrDefault(a => a.name.Equals("AN_Berserker_Watcher_Legs_ItemDef"));
                 shadowLegs.Abilities = new AbilityDef[] 

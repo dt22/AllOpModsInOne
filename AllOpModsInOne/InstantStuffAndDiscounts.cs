@@ -29,27 +29,16 @@ namespace AllOpModsInOne
                 foreach (WeaponDef weapon in Repo.GetAllDefs<WeaponDef>())
                 {
                     weapon.ManufacturePointsCost = 0;                  
-               }
+                }
                 foreach (GroundVehicleItemDef item in Repo.GetAllDefs<GroundVehicleItemDef>())
                 {
                     item.ManufacturePointsCost = 0;
-                }
-                foreach (GroundVehicleModuleDef item in Repo.GetAllDefs<GroundVehicleModuleDef>())
-                {
-                    item.ManufacturePointsCost = 0;
-                }
-                foreach (GroundVehicleWeaponDef item in Repo.GetAllDefs<GroundVehicleWeaponDef>())
-                {
-                    item.ManufacturePointsCost = 0;
-                }
+                }               
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
                     item.ManufacturePointsCost = 0;
                 }
-                foreach (ItemDef items in Repo.GetAllDefs<ItemDef>())
-                {
-                    if (items.name.Contains("BasicGeoModule_TestEquipmentDef"))
-                    {
+               
                         foreach (GeoVehicleWeaponDef item1 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
                         {
                             item1.ManufacturePointsCost = 0;
@@ -57,11 +46,8 @@ namespace AllOpModsInOne
                         foreach (GeoVehicleModuleDef item2 in Repo.GetAllDefs<GeoVehicleModuleDef>())
                         {
                             item2.ManufacturePointsCost = 0;
-                        }
-                    }
+                        }               
                 }
-                
-            }
             
             if(MyMod.Config.InstantResearch == true)
             {
@@ -89,16 +75,17 @@ namespace AllOpModsInOne
 
             if (MyMod.Config.EverythingHalfOff == true)
             {
-                ActivateBaseAbilityDef baseCost = Repo.GetAllDefs<ActivateBaseAbilityDef>().FirstOrDefault(rd => rd.name.Contains("ActivateBaseAbilityDef"));
+                ActivateBaseAbilityDef baseCost = Repo.GetAllDefs<ActivateBaseAbilityDef>().FirstOrDefault(rd => rd.name.Contains("ActivateBaseAbilityDef"));               
                 TheMarketplaceSettingsDef MarketPlaceCost = Repo.GetAllDefs<TheMarketplaceSettingsDef>().FirstOrDefault(rd => rd.name.Contains("TheMarketplaceSettingsDef"));
 
                 baseCost.Cost *= 0.5f;
-                //MarketPlaceCost.PriceModulus *= 0.5f;
+                MarketPlaceCost.PriceModulus *= 0.5f;
 
-                for(int i = 0; i < MarketPlaceCost.TheMarketplaceItemPriceMultipliers.Length; i++)
+                for (int i = 0; i < MarketPlaceCost.TheMarketplaceItemPriceMultipliers.Length; i++)
                 {
                     MarketPlaceCost.TheMarketplaceItemPriceMultipliers[i].PriceMultiplier *= 0.5f;
                 }
+
 
                 foreach (PhoenixFacilityDef facility in Repo.GetAllDefs<PhoenixFacilityDef>().Where(rd => rd.name.Contains("PhoenixFacilityDef")))
                 {
@@ -113,15 +100,15 @@ namespace AllOpModsInOne
                     item.ManufactureProteanMutane *= 0.5f;
                     item.ManufactureOricalcum *= 0.5f;
                 }
-                foreach (WeaponDef weapon in Repo.GetAllDefs<WeaponDef>())
-                {
-                    weapon.ManufactureMaterials *= 0.5f;
-                    weapon.ManufactureTech *= 0.5f;
-                    weapon.ManufactureMutagen *= 0.5f;
-                    weapon.ManufactureLivingCrystals *= 0.5f;
-                    weapon.ManufactureProteanMutane *= 0.5f;
-                    weapon.ManufactureOricalcum *= 0.5f;
-                }
+                //foreach (WeaponDef weapon in Repo.GetAllDefs<WeaponDef>())
+                //{
+                //    weapon.ManufactureMaterials *= 0.5f;
+                //    weapon.ManufactureTech *= 0.5f;
+                //    weapon.ManufactureMutagen *= 0.5f;
+                //    weapon.ManufactureLivingCrystals *= 0.5f;
+                //    weapon.ManufactureProteanMutane *= 0.5f;
+                //    weapon.ManufactureOricalcum *= 0.5f;
+                //}
                 foreach (GroundVehicleItemDef item in Repo.GetAllDefs<GroundVehicleItemDef>())
                 {
                     item.ManufactureMaterials *= 0.5f;
@@ -131,28 +118,25 @@ namespace AllOpModsInOne
                     item.ManufactureProteanMutane *= 0.5f;
                     item.ManufactureOricalcum *= 0.5f;
                 }
-                foreach (GroundVehicleModuleDef item in Repo.GetAllDefs<GroundVehicleModuleDef>())
-                {
-                    item.ManufactureMaterials *= 0.5f;
-                    item.ManufactureTech *= 0.5f;
-                    item.ManufactureMutagen *= 0.5f;
-                    item.ManufactureLivingCrystals *= 0.5f;
-                    item.ManufactureProteanMutane *= 0.5f;
-                    item.ManufactureOricalcum *= 0.5f;
-                }
-                foreach (GroundVehicleWeaponDef item in Repo.GetAllDefs<GroundVehicleWeaponDef>())
-                {
-                    item.ManufactureMaterials *= 0.5f;
-                    item.ManufactureTech *= 0.5f;
-                    item.ManufactureMutagen *= 0.5f;
-                    item.ManufactureLivingCrystals *= 0.5f;
-                    item.ManufactureProteanMutane *= 0.5f;
-                    item.ManufactureOricalcum *= 0.5f;
-                }
-                foreach (ItemDef item in Repo.GetAllDefs<ItemDef>())
-                {
-                    if (item.name.Contains("BasicGeoModule_TestEquipmentDef"))
-                    {
+                //foreach (GroundVehicleModuleDef item in Repo.GetAllDefs<GroundVehicleModuleDef>())
+                //{
+                //    item.ManufactureMaterials *= 0.5f;
+                //    item.ManufactureTech *= 0.5f;
+                //    item.ManufactureMutagen *= 0.5f;
+                //    item.ManufactureLivingCrystals *= 0.5f;
+                //    item.ManufactureProteanMutane *= 0.5f;
+                //    item.ManufactureOricalcum *= 0.5f;
+                //}
+                //foreach (GroundVehicleWeaponDef item in Repo.GetAllDefs<GroundVehicleWeaponDef>())
+                //{
+                //    item.ManufactureMaterials *= 0.5f;
+                //    item.ManufactureTech *= 0.5f;
+                //    item.ManufactureMutagen *= 0.5f;
+                //    item.ManufactureLivingCrystals *= 0.5f;
+                //    item.ManufactureProteanMutane *= 0.5f;
+                //    item.ManufactureOricalcum *= 0.5f;
+                //}
+                
                         foreach (GeoVehicleWeaponDef item2 in Repo.GetAllDefs<GeoVehicleWeaponDef>())
                         {
                             item2.ManufactureMaterials *= 0.5f;
@@ -171,8 +155,6 @@ namespace AllOpModsInOne
                             item3.ManufactureProteanMutane *= 0.5f;
                             item3.ManufactureOricalcum *= 0.5f;
                         }
-                    }
-                }
                 foreach (VehicleItemDef item in Repo.GetAllDefs<VehicleItemDef>())
                 {
                     item.ManufactureMaterials *= 0.5f;
