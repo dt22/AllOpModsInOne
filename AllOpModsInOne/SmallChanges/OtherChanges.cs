@@ -17,10 +17,10 @@ namespace AllOpModsInOne.SmallChanges
 {
     internal class OtherChanges
     {
+        private static readonly SharedData Shared = MyMod.Shared;
+        private static readonly DefRepository Repo = MyMod.Repo;
         public static void Change_Others()
-        {
-            DefRepository Repo = GameUtl.GameComponent<DefRepository>();
-            SharedData Shared = GameUtl.GameComponent<SharedData>();
+        {           
             ResearchDef atmosphiricAnalysis = Repo.GetAllDefs<ResearchDef>().FirstOrDefault(ged => ged.name.Equals("PX_AtmosphericAnalysis_ResearchDef"));
             PhoenixFacilityDef VehicleBay = Repo.GetAllDefs<PhoenixFacilityDef>().FirstOrDefault(ged => ged.name.Equals("VehicleBay_PhoenixFacilityDef"));
             VehicleSlotFacilityComponentDef VehicleBaySlotComponent = Repo.GetAllDefs<VehicleSlotFacilityComponentDef>().FirstOrDefault(ged => ged.name.Equals("E_Element0 [VehicleBay_PhoenixFacilityDef]"));
@@ -128,7 +128,7 @@ namespace AllOpModsInOne.SmallChanges
             {
                 ApplyStatusAbilityDef remoteControl = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(a => a.name.Equals("ManualControl_AbilityDef"));
                 remoteControl.ActionPointCost = 0.25f;
-                remoteControl.WillPointCost = 2;
+                remoteControl.WillPointCost = 1;
             }            
             
             if (MyMod.Config.ArchAngelRL1HasBlastRadius == true)
