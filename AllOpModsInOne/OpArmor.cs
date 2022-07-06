@@ -18,11 +18,13 @@ namespace AllOpModsInOne
         {
             DefRepository Repo = GameUtl.GameComponent<DefRepository>();
 
-            ShootAbilityDef DD = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("DeadlyDuo_ShootAbilityDef"));
+            ShootAbilityDef DD = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("DeadlyDuo_ShootAbilityDef")); 
+            ShootAbilityDef RB = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("RageBurst_ShootAbilityDef"));
 
             DD.ExecutionsCount = 2;
             DD.AddFollowupAbilityStatusDef = null;
             DD.CharacterProgressionData = null;
+            DD.OverrideEquipmentTrait = null;
             DD.TraitsToApply = new string[]
             {
                 DD.TraitsToApply[0],
