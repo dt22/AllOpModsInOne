@@ -52,7 +52,7 @@ namespace AllOpModsInOne
             addarmour.EffectDef = Helper.CreateDefFromClone(
                 source.EffectDef,
                "E31F7344-8F19-4AAE-8FE7-141865E34760",
-               $"E_Effect [BonusArmor2_AbilityDef]");
+               "E_Effect [BonusArmor2_AbilityDef]");
             //StatusEffectDef addarmourEffect = Helper.CreateDefFromClone(
             //    addarmour.EffectDef as StatusEffectDef,
             //   "E31F7344-8F19-4AAE-8FE7-141865E34760",
@@ -66,7 +66,7 @@ namespace AllOpModsInOne
             addarmourEffect.StatusDef = Helper.CreateDefFromClone(
                 sourceStatus,
                "5262FA8D-5F25-44C2-A50F-3B32F39CC978",
-               $"E_Status [BonusArmor2_AbilityDef]");
+               "E_Status [BonusArmor2_AbilityDef]");
 
             addarmour.CharacterProgressionData = null;
             ItemSlotStatsModifyStatusDef addarmourStatus = (ItemSlotStatsModifyStatusDef)addarmourEffect.StatusDef;
@@ -74,7 +74,10 @@ namespace AllOpModsInOne
             //addarmour.EffectDef = addarmourEffect;
             //addarmourEffect.StatusDef = addarmourStatus;
 
-            addarmour.TargetingDataDef.Origin.TargetTags = null;
+            addarmour.TargetingDataDef.Origin.TargetTags = new GameTagsList
+            {
+                Repo.GetAllDefs<GameTagDef>().FirstOrDefault(p => p.name.Equals("Human_TagDef"))
+            };
 
             addarmourStatus.StatsModifications[0].Type = ItemSlotStatsModifyStatusDef.StatType.Armour;
             addarmourStatus.StatsModifications[0].ModificationType = StatModificationType.Add;
@@ -170,6 +173,13 @@ namespace AllOpModsInOne
             //    SpawnActor.EventOnActivate.CullFilters[0],
             //};
             //reinforcementsCall.EventOnActivate = new TacticalEventDef();
+            foreach (TacActorSimpleAbilityAnimActionDef animActionDef in Repo.GetAllDefs<TacActorSimpleAbilityAnimActionDef>().Where(aad => aad.name.Contains("Soldier_Utka_AnimActionsDef")))
+            {
+                if (animActionDef.AbilityDefs != null && !animActionDef.AbilityDefs.Contains(SpawnActor))
+                {
+                    animActionDef.AbilityDefs = animActionDef.AbilityDefs.Append(SpawnActor).ToArray();
+                }
+            }
         }
         public static void AddAbilities()
         {
@@ -179,18 +189,16 @@ namespace AllOpModsInOne
             TacticalItemDef HeavyTorsoGoldGold = Repo.GetAllDefs<TacticalItemDef>().FirstOrDefault(p => p.name.Equals("PX_Heavy_Torso_Gold_BodyPartDef"));                    
             ApplyDamageEffectAbilityDef viralAreaAttack = Repo.GetAllDefs<ApplyDamageEffectAbilityDef>().FirstOrDefault(p => p.name.Equals("ViralAreaAttack_ApplyDamageEffect_AbilityDef"));
 
-            
+            foreach (TacActorSimpleAbilityAnimActionDef animActionDef in Repo.GetAllDefs<TacActorSimpleAbilityAnimActionDef>().Where(aad => aad.name.Contains("Soldier_Utka_AnimActionsDef")))
+            {
+                if (animActionDef.AbilityDefs != null && !animActionDef.AbilityDefs.Contains(viralAreaAttack))
+                {
+                    animActionDef.AbilityDefs = animActionDef.AbilityDefs.Append(viralAreaAttack).ToArray();
+                }
+            }
 
             if (MyMod.Config.GoldArmorSkinsHaveSpecialAbilities)
             {
-                foreach (TacActorSimpleAbilityAnimActionDef animActionDef in Repo.GetAllDefs<TacActorSimpleAbilityAnimActionDef>().Where(aad => aad.name.Contains("Soldier_Utka_AnimActionsDef")))
-                {
-                    if (animActionDef.AbilityDefs != null && !animActionDef.AbilityDefs.Contains(viralAreaAttack))
-                    {
-                        animActionDef.AbilityDefs = animActionDef.AbilityDefs.Append(viralAreaAttack).ToArray();
-                    }
-                }
-
                 assaultTorsoGold.Abilities = new AbilityDef[]
                 {
                     Repo.GetAllDefs<DeathBelcherAbilityDef>().FirstOrDefault(p => p.name.Equals("GoldTorsoOilCrab_AbilityDef")),

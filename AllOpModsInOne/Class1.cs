@@ -102,27 +102,30 @@ namespace AllOpModsInOne
             MyMod.Config = api("config", null) as ModConfig ?? new ModConfig();
             HarmonyInstance.Create("AllOpModsInOne").PatchAll();
             api?.Invoke("log verbose", "Mod Initialised.");           
-           
 		    ModDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 		    LogPath = Path.Combine(ModDirectory, "AllOpModsInOne.log");
-		    Logger.Initialize(LogPath, Config.Debug, ModDirectory, nameof(MyMod));
-
-		    OpArmor.Change_Armor();
+		    Logger.Initialize(LogPath, Config.Debug, ModDirectory, nameof(MyMod));		    
             MountedWeaponsMechArms.Change_Augmentations();
             InstantStuffAndDiscounts.Change_Time();
             EliteSoldiers.EliteSquad();
             Corruption.Change_Corruption();           
-            SoldierSkills.Skills();
 			HarmonyPatches.Change_Patches();
 			MutationsAndAugmentations.Change_PermanentAug();
 			OtherChanges.Change_Others();
 			NotForNexuesRelease.MyStuff();
 			PromoSkinArmor.Create_PromoSkinArmor();
-		}       
+			GameMod();
+		}  
+		public static void GameMod()
+        {
+			SoldierSkills.Skills();
+			OpArmor.Change_Armor();
+		}
         // Token: 0x06000002 RID: 2 RVA: 0x00002058 File Offset: 0x00000258
         public static void MainMod(Func<string, object, object> api)
         {
             MyMod.HomeMod(api);
+			GameMod();
         }
     }	
 }
