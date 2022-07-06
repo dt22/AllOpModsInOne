@@ -1,11 +1,14 @@
 ﻿using Base.Core;
 using Base.Defs;
 using Base.Entities.Abilities;
+using Base.Entities.Statuses;
 using Base.UI;
+using PhoenixPoint.Common.Entities;
 using PhoenixPoint.Common.Entities.Items;
 using PhoenixPoint.Tactical.Entities.Abilities;
 using PhoenixPoint.Tactical.Entities.Animations;
 using PhoenixPoint.Tactical.Entities.Equipments;
+using PhoenixPoint.Tactical.Entities.Statuses;
 using System.Linq;
 
 
@@ -143,52 +146,76 @@ namespace AllOpModsInOne
                 };
             }          
         }
-        //public static void Create_Reinforcements()
-        //{
-        //    ShootAbilityDef DD = Repo.GetAllDefs<ShootAbilityDef>().FirstOrDefault(a => a.name.Equals("DeadlyDuo_ShootAbilityDef"));
-        //    string skillName4 = "OPDeadlyDuo_AbilityDef";
-        //    SpawnActorAbilityDef source4 = Repo.GetAllDefs<SpawnActorAbilityDef>().FirstOrDefault(p => p.name.Equals("RageBurst_RageBurstInConeAbilityDef"));
-        //    SpawnActorAbilityDef ODD = Helper.CreateDefFromClone(
-        //        source4,
-        //        "F128D091-E92B-4765-82BA-6F46E654E125",
-        //        skillName4);
-        //    ODD.ViewElementDef = Helper.CreateDefFromClone(
-        //        source4.ViewElementDef,
-        //       "AFF08D93-FD49-47F7-A05A-D9A246684248",
-        //       skillName4);
-        //    ODD.CharacterProgressionData = Helper.CreateDefFromClone(
-        //        source4.CharacterProgressionData,
-        //       "4D9DA012-78BA-4A6B-B84D-6288161986D0",
-        //       skillName4);
-        //    ODD.SceneViewElementDef = Helper.CreateDefFromClone(
-        //        source4.SceneViewElementDef,
-        //       "4D9DA012-78BA-4A6B-B84D-6288161986D0",
-        //       skillName4);
-        //
-        //    ODD.CharacterProgressionData = null;
-        //
-        //    ODD.ViewElementDef.DisplayName1 = new LocalizedTextBind("Reinforcements", true);
-        //    ODD.ViewElementDef.Description = new LocalizedTextBind("Call on the exalted to reinforce your squad", true);
-        //    ODD.ActionPointCost = 1;
-        //    ODD.WillPointCost = 8;
-        //    ODD.UsesPerTurn = 1;
-        //
-        //    //SpawnActor.ReinforcementsSettings[0].CharacterTagDef = assaultTag;
-        //    //SpawnActor.ReinforcementsSettings[1].CharacterTagDef = ExaltedTag;
-        //    //SpawnActor.ViewElementDef.DisplayName1 = new LocalizedTextBind("Reinforcements", true);
-        //    //SpawnActor.ViewElementDef.Description = new LocalizedTextBind("Reinforce your squad", true);
-        //    //SpawnActor.EventOnActivate.CullFilters = new Base.Eventus.BaseEventFilterDef[]
-        //    //{
-        //    //    SpawnActor.EventOnActivate.CullFilters[0],
-        //    //};
-        //    //reinforcementsCall.EventOnActivate = new TacticalEventDef();
-        //    foreach (TacActorSimpleAbilityAnimActionDef animActionDef in Repo.GetAllDefs<TacActorSimpleAbilityAnimActionDef>().Where(aad => aad.name.Contains("Soldier_Utka_AnimActionsDef")))
-        //    {
-        //        if (animActionDef.AbilityDefs != null && !animActionDef.AbilityDefs.Contains(ODD))
-        //        {
-        //            animActionDef.AbilityDefs = animActionDef.AbilityDefs.Append(ODD).ToArray();
-        //        }
-        //    }
-        //}
+        public static void Create_SuperSaiyan()
+        {
+            //BloodLustStatusDef MM1 = Repo.GetAllDefs<BloodLustStatusDef>().FirstOrDefault(a => a.name.Equals("Slowed_StatusDef"));
+            //
+            //string skillName4 = "OPDeadlyDuo_AbilityDef";
+            //ApplyStatusAbilityDef source4 = Repo.GetAllDefs<ApplyStatusAbilityDef>().FirstOrDefault(p => p.name.Equals("AdrenalineRush_AbilityDef"));
+            //ApplyStatusAbilityDef ODD = Helper.CreateDefFromClone(
+            //    source4,
+            //    "F128D091-E92B-4765-82BA-6F46E654E125",
+            //    skillName4);
+            //ODD.ViewElementDef = Helper.CreateDefFromClone(
+            //    source4.ViewElementDef,
+            //   "AFF08D93-FD49-47F7-A05A-D9A246684248",
+            //   skillName4);
+            //ODD.CharacterProgressionData = Helper.CreateDefFromClone(
+            //    source4.CharacterProgressionData,
+            //   "4D9DA012-78BA-4A6B-B84D-6288161986D0",
+            //   skillName4);
+            //ODD.StatusDef = Helper.CreateDefFromClone(
+            //    source4.StatusDef,
+            //   "4D9DA012-78BA-4A6B-B84D-6288161986D0",
+            //   skillName4);
+            //BloodLustStatusDef MM1Status = Helper.CreateDefFromClone(
+            //    MM1,
+            //   "4D9DA012-78BA-4A6B-B84D-6288161986D0",
+            //   "E_Status [MasterMarksman1_AbilityDef]");
+            //
+            //MM1Status.StatModificationTargets = new StatModificationTarget[]
+            //{
+            //    MM1Status.StatModificationTargets[0],
+            //    MM1Status.StatModificationTargets[0],
+            //    StatModificationTarget.Accuracy,
+            //    StatModificationTarget.BonusAttackRange,
+            //    StatModificationTarget.BonusProjectilesPerShot,
+            //    StatModificationTarget.CarryWeight,
+            //    StatModificationTarget.Endurance,
+            //    StatModificationTarget.Health,
+            //    StatModificationTarget.HearingRange,
+            //    StatModificationTarget.Perception,
+            //    StatModificationTarget.WillPoints,
+            //    StatModificationTarget.Willpower,                                
+            //};
+            //
+            //ODD.CharacterProgressionData = null;
+            //MultiStatusDef ODStatus = (MultiStatusDef)ODD.StatusDef;
+            //
+            //
+            //
+            //ODD.ViewElementDef.DisplayName1 = new LocalizedTextBind("Reinforcements", true);
+            //ODD.ViewElementDef.Description = new LocalizedTextBind("Call on the exalted to reinforce your squad", true);
+            //ODD.ActionPointCost = 1;
+            //ODD.WillPointCost = 8;
+            //ODD.UsesPerTurn = 1;
+            //
+            //SpawnActor.ReinforcementsSettings[0].CharacterTagDef = assaultTag;
+            //SpawnActor.ReinforcementsSettings[1].CharacterTagDef = ExaltedTag;
+            //SpawnActor.ViewElementDef.DisplayName1 = new LocalizedTextBind("Reinforcements", true);
+            //SpawnActor.ViewElementDef.Description = new LocalizedTextBind("Reinforce your squad", true);
+            //SpawnActor.EventOnActivate.CullFilters = new Base.Eventus.BaseEventFilterDef[]
+            //{
+            //    SpawnActor.EventOnActivate.CullFilters[0],
+            //};
+            //reinforcementsCall.EventOnActivate = new TacticalEventDef();
+            //foreach (TacActorSimpleAbilityAnimActionDef animActionDef in Repo.GetAllDefs<TacActorSimpleAbilityAnimActionDef>().Where(aad => aad.name.Contains("Soldier_Utka_AnimActionsDef")))
+            //{
+            //    if (animActionDef.AbilityDefs != null && !animActionDef.AbilityDefs.Contains(ODD))
+            //    {
+            //        animActionDef.AbilityDefs = animActionDef.AbilityDefs.Append(ODD).ToArray();
+            //    }
+            //}
+        }
     }
 }
